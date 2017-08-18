@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include "Stack4.hpp"
 using namespace std;
 namespace c2_1 // 模版函数
 {
@@ -105,6 +106,16 @@ int main(int argc, const char * argv[])
      for (int i = 0 ; i<10; i++)
          cout<<"stack_d pop1 is "<<stack_d.Pop1()<<endl;
     
+    
+    //第4章 非类型模版参数
+    P4::Stack<int, 10> p4Stack;
+    for (int i = 0; i<10; i++)
+        p4Stack.Push(i);
+    p4Stack.Pop();
+    for (int i = 0 ; i<p4Stack.Size(); i++)
+    {
+        cout<<"p4stack["<<i <<"] = "<<p4Stack[i]<<endl;
+    }
     
     return 0;
 }
