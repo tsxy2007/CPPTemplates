@@ -114,7 +114,7 @@ int main(int argc, const char * argv[])
     p4Stack.Pop();
     for (int i = 0 ; i<p4Stack.Size(); i++)
     {
-        cout<<"p4stack["<<i <<"] = "<<p4Stack[i]<<endl;
+        cout<<"p4stack["<< i <<"] = "<<p4Stack[i]<<endl;
     }
     
     return 0;
