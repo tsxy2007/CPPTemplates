@@ -10,6 +10,8 @@
 #include <vector>
 #include <deque>
 #include "Stack4.hpp"
+#include "Stack5.hpp"
+#include "dec1.hpp"
 using namespace std;
 namespace c2_1 // 模版函数
 {
@@ -116,6 +118,21 @@ int main(int argc, const char * argv[])
     {
         cout<<"p4stack["<< i <<"] = "<<p4Stack[i]<<endl;
     }
+    
+    //第5章
+    P5::Derived5<int> d5;
+    d5.foo();
+    
+    P5::Stack5<int> p5s;
+    for (int i =0 ; i<10; i++)
+    {
+        p5s.Push( i );
+    }
+    
+    P5::Stack5<int> p5s_t = p5s;
+    p5s_t.print();
+    
+    
     
     return 0;
 }
