@@ -20,7 +20,7 @@ namespace P5_4
     template <typename T, template <typename ELEM> class CONT = std::deque >
     class Stack {
     private:
-        CONT<T> elems
+		CONT<T> elems;
     public:
         void    push(T const& ) ;// 压入元素
         void    pop(); //弹出元素
