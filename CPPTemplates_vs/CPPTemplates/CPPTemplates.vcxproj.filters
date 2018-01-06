@@ -21,6 +21,9 @@
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\Stack5.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\dec1.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\CPPTemplates\CPPTemplates\main.cpp">

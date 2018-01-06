@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\dec1.hpp" />
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\Stack4.hpp" />
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\Stack5.hpp" />
   </ItemGroup>
