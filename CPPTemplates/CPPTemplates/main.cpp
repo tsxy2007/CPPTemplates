@@ -9,8 +9,10 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <sstream>  
 #include "Stack4.hpp"
 #include "Stack5.hpp"
+#include "Dev3.h"
 #include "dec1.hpp"
 using namespace std;
 namespace c2_1 // 模版函数
@@ -32,58 +34,19 @@ namespace c2_1 // 模版函数
     }
 }
 
-namespace C3
-{
-    //缺省模版实参
-    template <typename T ,typename CONT = vector< T > >
-    class Stack
-    {
-    private:
-        CONT mDatas;
-    public:
-        void Push(const T& item);
-        void Pop();
-        T    Pop1();
-        T Top();
-        bool empty() const
-        {
-            return mDatas.empty();
-        }
-    };
-    
-     template <typename T, typename CONT>
-    void Stack<T, CONT>::Push(const T& item)
-    {
-        this->mDatas.push_back(item);
-    }
-    
-    template <typename T, typename CONT>
-    void Stack<T, CONT>::Pop()
-    {
-        if ( empty( ) )
-            throw out_of_range("Stack<> pop() : empty stack");
-        mDatas.pop_back( );
-    }
-    template <typename T, typename CONT>
-    T Stack<T, CONT>::Pop1()
-    {
-        if ( empty( ) )
-            throw out_of_range("Stack<> pop() : empty stack");
-        T elem = mDatas.back();
-        mDatas.pop_back();
-        return elem;
-    }
-  template <typename T, typename CONT>
-    T Stack<T, CONT>::Top()
-    {
-        if ( empty( ) )
-            throw out_of_range("Stack<> top() : empty stack");
-        return mDatas.back();
-    }
+void GetValue ( char* p ) {
+	p = ( char* ) malloc ( 100 );
 }
-
+//void Test ( ) {
+//	char* str = NULL;
+//	GetValue ( str );
+//	strcpy ( str , "Perfect" );
+//	strcpy ( str + 2 , "World" );
+//	printf ( str );
+//}
 int main(int argc, const char * argv[])
 {
+	//Test ( );
     // 第一章
     cout << "max is : "<< c2_1::max(1, 2)<<endl;
 //     cout << "max is : "<< c2_1::max(3.1, 2)<<endl;
@@ -101,13 +64,37 @@ int main(int argc, const char * argv[])
         int a = stack.Pop1();
         cout<<"stack pop1 is = " << a <<endl;
     }
-    
+	//第三章
     C3::Stack<int ,deque<int> > stack_d;
     for (int i = 0 ; i<10; i++)
         stack_d.Push(i);
      for (int i = 0 ; i<10; i++)
          cout<<"stack_d pop1 is "<<stack_d.Pop1()<<endl;
-    
+
+	 C3::Stack<std::string> csstack;
+	
+	 for (size_t i = 0; i < 10; i++)
+	 {
+		 std::string ele = "test" + to_string(i);
+		 csstack.push (ele);
+	 }
+
+	 while (!csstack.empty())
+	 {
+		 const std::string ele = csstack.top ();
+		 cout << ele.c_str() << endl;
+		 csstack.pop ();
+	 }
+	 {
+		 int a = 1, b = 2;
+		 int *a1 = &a, *b1 = &b;
+		 C3_1::A<int*, int*> C3_1_a;
+		 C3_1_a.function (a1, b1);
+		
+		 C3_1::A<int&, int&> C3_1_b;
+		 C3_1_b.function (a, b);
+	 }
+	
     
     //第4章 非类型模版参数
     P4::Stack<int, 10> p4Stack;
@@ -119,6 +106,13 @@ int main(int argc, const char * argv[])
         cout<<"p4stack["<< i <<"] = "<<p4Stack[i]<<endl;
     }
     
+	while ( !csstack.empty() )
+	{
+		const std::string& ele = csstack.top ();
+		cout <<"stack 3_string "<< ele.c_str() << endl;
+		csstack.pop ();
+	}
+
     //第5章
     P5::Derived5<int> d5;
     d5.foo();
@@ -131,8 +125,22 @@ int main(int argc, const char * argv[])
     
     P5::Stack5<int> p5s_t = p5s;
     p5s_t.print();
+
+	P5_1::Stack<int> intStack;
+	P5_1::Stack<float> floatStack;
+
+	intStack.push (1);
+	floatStack = intStack;
+
+	while (!floatStack.empty())
+	{
+		cout << "floatStack item = " << floatStack.top () << endl;
+		floatStack.pop ();
+	}
+		
+			
+	
     
-    
-    
+	system ( "PAUSE " );
     return 0;
 }
