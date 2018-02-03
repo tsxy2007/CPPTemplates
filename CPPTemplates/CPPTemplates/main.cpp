@@ -34,9 +34,19 @@ namespace c2_1 // 模版函数
     }
 }
 
-
+void GetValue ( char* p ) {
+	p = ( char* ) malloc ( 100 );
+}
+//void Test ( ) {
+//	char* str = NULL;
+//	GetValue ( str );
+//	strcpy ( str , "Perfect" );
+//	strcpy ( str + 2 , "World" );
+//	printf ( str );
+//}
 int main(int argc, const char * argv[])
 {
+	//Test ( );
     // 第一章
     cout << "max is : "<< c2_1::max(1, 2)<<endl;
 //     cout << "max is : "<< c2_1::max(3.1, 2)<<endl;
@@ -115,7 +125,21 @@ int main(int argc, const char * argv[])
     
     P5::Stack5<int> p5s_t = p5s;
     p5s_t.print();
-    
+
+	P5_1::Stack<int> intStack;
+	P5_1::Stack<float> floatStack;
+
+	intStack.push (1);
+	floatStack = intStack;
+
+	while (!floatStack.empty())
+	{
+		cout << "floatStack item = " << floatStack.top () << endl;
+		floatStack.pop ();
+	}
+		
+			
+	
     
 	system ( "PAUSE " );
     return 0;
