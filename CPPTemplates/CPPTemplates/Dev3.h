@@ -113,8 +113,8 @@ namespace C3_1
 	public:
 		void function (int value1, T value2)
 		{
-			cout << "Value1 = " << Value1 << endl;
-			cout << "Value2 = " << Value2 << endl;
+			cout << "Value1 = " << value1  << endl;
+			cout << "Value2 = " << value2 << endl;
 		}
 	};
 

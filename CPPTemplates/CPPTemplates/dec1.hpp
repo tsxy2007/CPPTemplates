@@ -75,7 +75,7 @@ namespace P5_4
 		return t;
 	}
 
-	template <typename T , template <typename ELEM , typename ALLOC = std::allocator< ELEM > > class CONT = std::deque >
+	template <typename T , template <typename ELEM , typename ALLOC = std::allocator< ELEM > > class CONT  >
 	bool Stack<T , CONT>::empty ( )const
 	{
 		return elems.empty ( );
