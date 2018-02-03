@@ -224,6 +224,8 @@
 		108C8D0D1F45B40E00410531 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /projects/boost_1_66_0;
+				LIBRARY_SEARCH_PATHS = /projects/boost_1_66_0/stage/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -231,6 +233,8 @@
 		108C8D0E1F45B40E00410531 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /projects/boost_1_66_0;
+				LIBRARY_SEARCH_PATHS = /projects/boost_1_66_0/stage/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
