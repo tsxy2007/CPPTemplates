@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		108C8D091F45B40E00410531 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 108C8D081F45B40E00410531 /* main.cpp */; };
+		2BDA95AF2025E239008A1124 /* TestVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BDA95AD2025E238008A1124 /* TestVector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +27,8 @@
 		108C8D051F45B40D00410531 /* CPPTemplates */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CPPTemplates; sourceTree = BUILT_PRODUCTS_DIR; };
 		108C8D081F45B40E00410531 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		108C8D101F46DE9900410531 /* Stack4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Stack4.hpp; sourceTree = "<group>"; };
+		2BDA95AD2025E238008A1124 /* TestVector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestVector.cpp; sourceTree = "<group>"; };
+		2BDA95AE2025E238008A1124 /* TestVector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestVector.hpp; sourceTree = "<group>"; };
 		2BF7756E1F49012600E94C7C /* Stack5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Stack5.hpp; sourceTree = "<group>"; };
 		2BF775711F490D1100E94C7C /* dec1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dec1.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +67,8 @@
 				108C8D101F46DE9900410531 /* Stack4.hpp */,
 				2BF7756E1F49012600E94C7C /* Stack5.hpp */,
 				2BF775711F490D1100E94C7C /* dec1.hpp */,
+				2BDA95AD2025E238008A1124 /* TestVector.cpp */,
+				2BDA95AE2025E238008A1124 /* TestVector.hpp */,
 			);
 			path = CPPTemplates;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BDA95AF2025E239008A1124 /* TestVector.cpp in Sources */,
 				108C8D091F45B40E00410531 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
