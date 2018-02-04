@@ -8,9 +8,14 @@
 
 #include <iostream>
 #include <vector>
-#include <deque>
 #include <list>
 #include <forward_list>
+#include <deque>
+#include <stack>
+#include <queue>
+#include <set>
+#include <map>
+//#include <>
 #include <sstream>
 #include <array>
 #include <unordered_map>
@@ -41,7 +46,16 @@ namespace c2_1 // 模版函数
         return a > b ? a : b;
     }
 }
-
+string get_a_target_string()
+{
+    char buf[10];
+    snprintf(buf, 10, "%d",rand() % 32000 );
+    return string(buf);
+}
+long get_a_target_long()
+{
+    return rand() / 32000;
+}
 void GetValue ( char* p ) {
 	p = ( char* ) malloc ( 100 );
 }
@@ -126,6 +140,10 @@ namespace JJ03
         string target(buf);
         ::find(c.begin(), c.end(), target);
         cout<<"c push_back millis = "<<clock() - timeStart <<endl;
+        
+        timeStart = clock();
+        c.sort();
+        cout<<"c c.sort millis = "<< (clock() - timeStart) <<endl;
     }
 }
 namespace JJ04
@@ -148,6 +166,184 @@ namespace JJ04
             }
         }
         cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
+        cout<<"c front "<<c.front()<<endl;
+        cout<<"c max size = "<<c.max_size()<<endl;
+        
+        timeStart = clock();
+        c.sort();
+        cout<<" c.sort millis = "<<(clock() - timeStart) <<endl;
+        
+        
+        snprintf(buf, 10, "%d",rand());
+        string target(buf);
+        timeStart = clock();
+        ::find(c.begin(), c.end(), target);
+        cout<<" ::find millis = "<<(clock() - timeStart) <<endl;
+    }
+}
+
+namespace JJ06
+{
+    void test_function(long&vale)
+    {
+        deque<string> c;
+        char buf[10];
+        clock_t timeStart = clock();
+        for (long i = 0 ; i<vale ; i++)
+        {
+            try
+            {
+                snprintf(buf, 10, "%d",rand());
+                c.push_front(string(buf));
+            }
+            catch (exception& p)
+            {
+                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
+            }
+        }
+        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
+        cout<<"c front = "<<c.front()<<endl;
+        cout<<"c back = "<<c.back()<<endl;
+        cout<<"c max_size = "<<c.max_size()<<endl;
+        cout<<"c size = "<<c.size()<<endl;
+        c.pop_back();
+        cout<<"c front = "<<c.front()<<endl;
+        cout<<"c back = "<<c.back()<<endl;
+        cout<<"c max_size = "<<c.max_size()<<endl;
+        cout<<"c size = "<<c.size()<<endl;
+    }
+}
+
+
+namespace JJ07
+{
+    void test_function(long&vale)
+    {
+        stack<string> c;
+        char buf[10];
+        clock_t timeStart = clock();
+        for (long i = 0 ; i<vale ; i++)
+        {
+            try
+            {
+                snprintf(buf, 10, "%d",rand());
+                c.push(string(buf));
+            }
+            catch (exception& p)
+            {
+                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
+            }
+        }
+        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
+        cout<<"c top = "<<c.top()<<endl;
+        cout<<"c size = "<<c.size()<<endl;
+    }
+}
+
+namespace JJ08
+{
+    void test_function(long&vale)
+    {
+        queue<string> c;
+        char buf[10];
+        clock_t timeStart = clock();
+        for (long i = 0 ; i<vale ; i++)
+        {
+            try
+            {
+                snprintf(buf, 10, "%d",rand());
+                c.push(string(buf));
+            }
+            catch (exception& p)
+            {
+                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
+            }
+        }
+        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
+        cout<<"c back = "<<c.back()<<endl;
+        cout<<"c size = "<<c.size()<<endl;
+        cout<<"c front = " <<c.front()<<endl;
+    }
+}
+
+namespace JJ09
+{
+    void test_function(long &vale)
+    {
+        multiset<string> c;
+        char buf[10];
+        
+        clock_t startTime = clock();
+        
+        for (long i = 0 ; i<vale; i++) {
+            try {
+                string item = get_a_target_string();
+                c.insert(item);
+            } catch (exception& p) {
+                cout<<"["<<i<<"]"<<p.what()<<endl;
+                abort();
+            }
+        }
+        cout<<"set insert millis = "<<( clock() - startTime )<<endl;
+        cout<<"set size = "<< c.size()<<endl;
+        cout<<"set max size = "<<c.max_size()<<endl;
+        
+        string target =get_a_target_string();
+        {
+            startTime = clock();
+            auto pItem = find(c.begin(), c.end(), target);
+            cout<<"std::find , milli-seconds "<<(clock() - startTime)<<endl;
+            if (pItem != c.end())
+                cout<<*pItem<<endl;
+            else
+                cout<<"not found!"<<endl;
+        }
+        
+        {
+            startTime = clock();
+            auto pItem = c.find(target);
+            cout<<"std::find , milli-seconds "<<(clock() - startTime)<<endl;
+            if (pItem != c.end())
+                cout<<*pItem<<endl;
+            else
+                cout<<"not found!"<<endl;
+        }
+    }
+}
+
+namespace JJ10
+{
+    void test_function(long &value)
+    {
+        cout<<"begin multimap ...................... "<<endl;
+        multimap<long, string> c;
+        clock_t startTime = clock();
+        for (long i = 0; i<value; i++) {
+            try {
+                string item = get_a_target_string();
+                c.insert(pair<long,string>(i,item));
+            } catch (exception& p) {
+                 cout<<"["<<i<<"]"<<p.what()<<endl;
+                abort();
+            }
+        }
+        
+        cout<<"multimap insert millis = "<<(clock() - startTime)<<endl;
+        cout<< "multimap.max_size ="<<c.max_size()<<endl;
+        cout<<"multimap.size = "<<c.size()<<endl;
+        
+         long target = get_a_target_long();
+        {
+           
+            startTime = clock();
+            auto pItem = c.find(target);
+            cout<<"c.find item millis seconds = "<<(clock() - startTime)<<endl;
+            if (pItem != c.end())
+                cout<<"pItem = "<<(*pItem).second<<endl;
+            else
+                cout<<"pItem not found"<<endl;
+        }
+        
     }
 }
 
@@ -156,7 +352,14 @@ int main(int argc, const char * argv[])
     long i = 1000000;
 //    JJ02::test_function(i);
 //    JJ03::test_function(i);
-    JJ04::test_function(i);
+//    JJ04::test_function(i);
+//    JJ06::test_function(i);
+//    JJ07::test_function(i);
+//    JJ08::test_function(i);
+//    JJ09::test_function(i);
+    JJ10::test_function(i);
+    
+    
     
 //    typedef vector<int,allocator<int>>  VectorInt;
 //
