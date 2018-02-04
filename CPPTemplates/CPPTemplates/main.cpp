@@ -9,16 +9,16 @@
 #include <iostream>
 #include <vector>
 #include <list>
-#include <forward_list>
+//#include <forward_list>
 #include <deque>
+//#include <experimental/vector>
 #include <stack>
 #include <queue>
 #include <set>
 #include <map>
 #include <memory>
-#include <cliext/adapter>
 #include <time.h>  
-#include <stdio.h>  
+#include <stdio.h>
 #include <sstream>
 #include <array>
 #include <unordered_map>
@@ -153,35 +153,35 @@ namespace JJ04
 {
     void test_function(long&vale)
     {
-        forward_list<string> c;
-        char buf[10];
-        clock_t timeStart = clock();
-        for (long i = 0 ; i<vale ; i++)
-        {
-            try
-            {
-                snprintf(buf, 10, "%d",rand());
-                c.push_front(string(buf));
-            }
-            catch (exception& p)
-            {
-                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
-            }
-        }
-        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
-        cout<<"c front "<<c.front()<<endl;
-        cout<<"c max size = "<<c.max_size()<<endl;
-        
-        timeStart = clock();
-        c.sort();
-        cout<<" c.sort millis = "<<(clock() - timeStart) <<endl;
-        
-        
-        snprintf(buf, 10, "%d",rand());
-        string target(buf);
-        timeStart = clock();
-        ::find(c.begin(), c.end(), target);
-        cout<<" ::find millis = "<<(clock() - timeStart) <<endl;
+//        forward_list<string> c;
+//        char buf[10];
+//        clock_t timeStart = clock();
+//        for (long i = 0 ; i<vale ; i++)
+//        {
+//            try
+//            {
+//                snprintf(buf, 10, "%d",rand());
+//                c.push_front(string(buf));
+//            }
+//            catch (exception& p)
+//            {
+//                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
+//            }
+//        }
+//        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
+//        cout<<"c front "<<c.front()<<endl;
+//        cout<<"c max size = "<<c.max_size()<<endl;
+//
+//        timeStart = clock();
+//        c.sort();
+//        cout<<" c.sort millis = "<<(clock() - timeStart) <<endl;
+//
+//
+//        snprintf(buf, 10, "%d",rand());
+//        string target(buf);
+//        timeStart = clock();
+//        ::find(c.begin(), c.end(), target);
+//        cout<<" ::find millis = "<<(clock() - timeStart) <<endl;
     }
 }
 
@@ -367,16 +367,15 @@ namespace JJ11
 int main(int argc, const char * argv[])
 {
     long i = 1000000;
-//    JJ02::test_function(i);
+    JJ02::test_function(i);
 //    JJ03::test_function(i);
 //    JJ04::test_function(i);
 //    JJ06::test_function(i);
 //    JJ07::test_function(i);
 //    JJ08::test_function(i);
 //    JJ09::test_function(i);
-    //JJ10::test_function(i);
-	JJ11::test_function (i);
-   
+//    JJ10::test_function(i);
+//    JJ11::test_function (i);
 
     
 //    typedef vector<int,allocator<int>>  VectorInt;
