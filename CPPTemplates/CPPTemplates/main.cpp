@@ -15,7 +15,10 @@
 #include <queue>
 #include <set>
 #include <map>
-//#include <>
+#include <memory>
+#include <cliext/adapter>
+#include <time.h>  
+#include <stdio.h>  
 #include <sstream>
 #include <array>
 #include <unordered_map>
@@ -347,6 +350,20 @@ namespace JJ10
     }
 }
 
+namespace JJ11
+{
+	void test_function (long&vale)
+	{
+		cout << "allocator test beging ................................." << endl;
+		allocator<int> al;
+		int* a = al.allocate (1);
+		al.construct (a, 7);
+		cout << "a[0] = " << a[0] << endl;
+		al.deallocate (a, 1);
+
+	}
+}
+
 int main(int argc, const char * argv[])
 {
     long i = 1000000;
@@ -357,9 +374,10 @@ int main(int argc, const char * argv[])
 //    JJ07::test_function(i);
 //    JJ08::test_function(i);
 //    JJ09::test_function(i);
-    JJ10::test_function(i);
-    
-    
+    //JJ10::test_function(i);
+	JJ11::test_function (i);
+   
+
     
 //    typedef vector<int,allocator<int>>  VectorInt;
 //
