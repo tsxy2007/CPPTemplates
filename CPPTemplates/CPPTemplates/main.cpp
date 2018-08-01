@@ -30,6 +30,7 @@
 #include "Dev3.h"
 #include "dec1.hpp"
 #include "TestVector.hpp"
+#include "stack1.h"
 using namespace std;
 namespace c2_1 // 模版函数
 {
@@ -71,6 +72,14 @@ void GetValue ( char* p ) {
 //}
 #define ARRAY_SIZE 500000
 
+namespace US1
+{
+ template<class T>
+ T const & max(T const& a, T const& b)
+ {
+	 return a < b ? b : a ;
+ }
+}
 
 int compare_int(const void * ele1, const void * ele2)
 {
@@ -367,7 +376,13 @@ namespace JJ11
 int main(int argc, const char * argv[])
 {
     long i = 1000000;
-    JJ02::test_function(i);
+
+	ZZ01::Stack<int> zzs;
+	zzs.push(1);
+	zzs.pop();
+	zzs.empty();
+
+    //JJ02::test_function(i);
 //    JJ03::test_function(i);
 //    JJ04::test_function(i);
 //    JJ06::test_function(i);
@@ -509,8 +524,13 @@ int main(int argc, const char * argv[])
 //    }
 //
 			
-	
-    
+	int a = 42 , b = 24;
+	int IMax = US1::max(a,b);
+	std::cout<<"IMax = "<<IMax<<endl; 
+
+	std::string s1 = "ztk",s2="wss";
+	string s3 = US1::max(s1,s2);
+	std::cout<<"s3 = "<<s3<<endl;
 	system ( "PAUSE " );
     return 0;
 }
