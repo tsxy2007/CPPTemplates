@@ -31,7 +31,15 @@
 #include "dec1.hpp"
 #include "TestVector.hpp"
 #include "stack1.h"
+#include "arrays.hpp"
+#include "boolstring.hpp"
+#include "lessarray.hpp"
+#include "stack5decl.h"
+
 using namespace std;
+
+
+
 namespace c2_1 // 模版函数
 {
     template <typename T>
@@ -71,7 +79,6 @@ void GetValue ( char* p ) {
 //	printf ( str );
 //}
 #define ARRAY_SIZE 500000
-
 namespace US1
 {
  template<class T>
@@ -80,7 +87,6 @@ namespace US1
 	 return a < b ? b : a ;
  }
 }
-
 int compare_int(const void * ele1, const void * ele2)
 {
     return *(int*)ele1 - *(int*)ele2;
@@ -126,7 +132,6 @@ namespace JJ02
         cout<<"bsearch millis = "<<clock() - timeStart <<endl;
     }
 }
-
 namespace JJ03
 {
     void test_function(long &value)
@@ -193,7 +198,6 @@ namespace JJ04
 //        cout<<" ::find millis = "<<(clock() - timeStart) <<endl;
     }
 }
-
 namespace JJ06
 {
     void test_function(long&vale)
@@ -225,8 +229,6 @@ namespace JJ06
         cout<<"c size = "<<c.size()<<endl;
     }
 }
-
-
 namespace JJ07
 {
     void test_function(long&vale)
@@ -251,7 +253,6 @@ namespace JJ07
         cout<<"c size = "<<c.size()<<endl;
     }
 }
-
 namespace JJ08
 {
     void test_function(long&vale)
@@ -277,7 +278,6 @@ namespace JJ08
         cout<<"c front = " <<c.front()<<endl;
     }
 }
-
 namespace JJ09
 {
     void test_function(long &vale)
@@ -322,7 +322,6 @@ namespace JJ09
         }
     }
 }
-
 namespace JJ10
 {
     void test_function(long &value)
@@ -358,30 +357,40 @@ namespace JJ10
         
     }
 }
-
 namespace JJ11
 {
 	void test_function (long&vale)
 	{
-		cout << "allocator test beging ................................." << endl;
-		allocator<int> al;
-		int* a = al.allocate (1);
-		al.construct (a, 7);
-		cout << "a[0] = " << a[0] << endl;
-		al.deallocate (a, 1);
+		//cout << "allocator test beging ................................." << endl;
+		//allocator<int> al;
+		//int* a = al.allocate (1);
+		//al.construct (a, 7);
+		//cout << "a[0] = " << a[0] << endl;
+		//al.deallocate (a, 1);
 
 	}
 }
 
+template<typename T1, typename T2, typename T3>
+void foo(int a1[7], int a2[], int(&a3)[42], int(&x0)[], T1 x1, T2& x2, T3&& x3)
+{
+	MyClass<decltype(a1)>::print();
+	MyClass<decltype(a2)>::print();
+	MyClass<decltype(a3)>::print();
+
+	MyClass<decltype(x0)>::print();
+	MyClass<decltype(x1)>::print();
+	MyClass<decltype(x2)>::print();
+	MyClass<decltype(x3)>::print();
+}
+
 int main(int argc, const char * argv[])
 {
-    long i = 1000000;
-
-	ZZ01::Stack<int> zzs;
-	zzs.push(1);
-	zzs.pop();
-	zzs.empty();
-
+    //long i = 1000000;
+	//ZZ01::Stack<int> zzs;
+	//zzs.push(1);
+	//zzs.pop();
+	//zzs.empty();
     //JJ02::test_function(i);
 //    JJ03::test_function(i);
 //    JJ04::test_function(i);
@@ -390,9 +399,7 @@ int main(int argc, const char * argv[])
 //    JJ08::test_function(i);
 //    JJ09::test_function(i);
 //    JJ10::test_function(i);
-//    JJ11::test_function (i);
-
-    
+//    JJ11::test_function (i);    
 //    typedef vector<int,allocator<int>>  VectorInt;
 //
 //    int ia[6] = {27,210,12,47,109,83};
@@ -429,8 +436,7 @@ int main(int argc, const char * argv[])
 //    });
 //    cout<<"sort milli-seconds : "<<(clock() - timeStart)<<endl;
 //    timeStart = clock();
-//    search(array_int.begin(), array_int.end());
-    
+//    search(array_int.begin(), array_int.end()); 
 	//Test ( );
 //    // 第一章
 //    cout << "max is : "<< c2_1::max(1, 2)<<endl;
@@ -523,14 +529,38 @@ int main(int argc, const char * argv[])
 //        floatStack.pop ();
 //    }
 //
-			
-	int a = 42 , b = 24;
-	int IMax = US1::max(a,b);
-	std::cout<<"IMax = "<<IMax<<endl; 
+	//int a = 42 , b = 24;
+	//int IMax = US1::max(a,b);
+	//std::cout<<"IMax = "<<IMax<<endl; 
+	//std::string s1 = "ztk",s2="wss";
+	//string s3 = US1::max(s1,s2);
+	//std::cout<<"s3 = "<<s3<<endl;
+    int a[42];
+    //MyClass<decltype(a)>::print();
+    extern int x[];
+    foo(a, a, a, x, x, x, x);
 
-	std::string s1 = "ztk",s2="wss";
-	string s3 = US1::max(s1,s2);
-	std::cout<<"s3 = "<<s3<<endl;
+    std::string str = "on";
+    BoolString s(str);
+    std::cout << s.get() << std::endl;
+    std::cout << s.get<bool>() << std::endl;
+
+	int xcout[] = { 1, 2, 3 };
+	int ycout[] = { 1, 2, 3, 4, 5 };
+	std::cout << TTTT::less(xcout, ycout) << std::endl;
+
+    stack_5111::Stack<int> stack_5_int;
+    stack_5_int.push(1);
+    stack_5_int.push(2);
+
+    stack_5111::Stack<std::string> stack_5_string ;
+    stack_5_string.push("1");
+
+    stack_5111::Stack<int> stack_5_int_temp = stack_5_int;
+    std::cout << stack_5_int_temp.top() << std::endl;
+
 	system ( "PAUSE " );
     return 0;
 }
+
+int x[] = { 0,8,15 };

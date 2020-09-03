@@ -27,6 +27,33 @@
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\Dev3.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\arrays.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\boolstring.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\lessarray.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\stack5decl.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Typelist.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="nthelement.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\largesttype.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\typelistisempty.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\genericlargesttype.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\CPPTemplates\CPPTemplates\main.cpp">
