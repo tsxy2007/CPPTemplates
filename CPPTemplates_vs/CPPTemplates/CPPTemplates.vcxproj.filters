@@ -27,6 +27,24 @@
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\Dev3.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\MaxDefault1.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\Fib.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\stackauto.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\varprint2.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\varprint_opeator.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\addspace.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\CPPTemplates\CPPTemplates\main.cpp">
