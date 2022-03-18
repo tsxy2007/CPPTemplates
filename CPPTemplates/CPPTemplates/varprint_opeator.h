@@ -20,6 +20,6 @@ namespace PP_OPERATOR
 	template<typename... T>
 	void printDouble(T const& ... args)
 	{
-		print(args + args ...);
+		//print(args + args ...);
 	}
 }

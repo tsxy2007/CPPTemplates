@@ -380,9 +380,90 @@
 //
 //	}
 //}
+// 类型萃取
+template<typename T>
+struct AccumulationTraits;
+
+template<>
+struct AccumulationTraits<char>
+{
+	using AccT = int;
+	//static AccT const zero = 0;
+	static constexpr AccT zero()
+	{
+		return 0;
+	}
+};
+
+template<>
+struct AccumulationTraits<short>
+{
+	using AccT = int;
+	//static AccT const zero = 0;
+	static constexpr AccT zero()
+	{
+		return 0;
+	}
+};
+
+template<>
+struct AccumulationTraits<int>
+{
+	using AccT = long;
+	//static AccT const zero = 0;
+	static constexpr AccT zero()
+	{
+		return 0;
+	}
+};
+
+template<>
+struct AccumulationTraits<unsigned int>
+{
+	using AccT = unsigned long;
+	//static AccT const zero = 0;
+	static constexpr AccT zero()
+	{
+		return 0;
+	}
+};
+
+template<>
+struct AccumulationTraits<float>
+{
+	using AccT = float;
+	//static constexpr AccT const zero = 0.f;
+	static constexpr AccT zero()
+	{
+		return 0.f;
+	}
+};
+
+template<typename T>
+auto accum(T const* beg, T const* end)
+{
+	using AccT = typename AccumulationTraits<T>::AccT;
+	AccT total = AccumulationTraits<T>::zero();
+	while (beg!= end)
+	{
+		total += *beg;
+		++beg;
+	}
+	return total;
+}
+
 
 int main(int argc, const char * argv[])
 {
+	int num[] = { 1,2,3,4,5 };
+	std::cout<<"the average value of the iterger values is "<<accum(num,num+5)<<"\n";
+
+	char name[] = "templates";
+	int length = sizeof(name) - 1;
+	std::cout << "the average value of characters in " << name << " = " << accum(name, name + length) / length << "\n";
+
+	system("PAUSE ");
+	return 0;
 	PP_2::print(1.0, 2.0f, 3, "ehlol");
 	PP_OPERATOR::print(1.0, 2.f, 3, "hello");
 	std::cout << std::endl;
