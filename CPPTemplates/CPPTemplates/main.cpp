@@ -452,6 +452,110 @@ auto accum(T const* beg, T const* end)
 	return total;
 }
 
+template<typename T>
+struct RemoveReferenceT
+{
+	using Type = T;
+};
+
+template<typename T>
+struct RemoveReferenceT<T&>
+{
+	using Type = T;
+};
+
+template <typename T>
+struct RemoveReferenceT<T&&>
+{
+	using Type = T;
+};
+
+template<typename T>
+using RemoveReference = typename RemoveReferenceT<T>::Type;
+
+template<typename T>
+struct AddLValueReferenceT
+{
+	using Type = T&;
+};
+
+template<typename T>
+using AddLValueReference = typename AddLValueReferenceT<T>::Type;
+
+template<typename T>
+struct AddRValueReferenceT
+{
+	using Type = T&&;
+};
+
+template<typename T>
+using AddRValueReference = typename AddRValueReferenceT<T>::Type;
+
+template<typename T>
+using AddLeftValueReferenceT = T&;
+
+template<typename T>
+using AddRightValueReferenceT = T&&;
+
+template<>
+struct AddLValueReferenceT<void>
+{
+	using Type = void;
+};
+
+template<>
+struct AddLValueReferenceT<void const>
+{
+	using Type = void;
+};
+
+template<>
+struct AddLValueReferenceT<void volatile>
+{
+	using Type = void;
+};
+
+template<>
+struct AddLValueReferenceT<void const volatile>
+{
+	using Type = void;
+};
+
+template<typename T>
+struct RemoveConstT
+{
+	using Type = T;
+};
+
+template<typename T>
+struct RemoveConstT<T const>
+{
+	using Type = T;
+};
+
+template<typename T>
+using RemoveConst = typename RemoveConstT<T>::Type;
+
+template <typename T>
+struct RemoveVolatileT
+{
+	using Type = T;
+};
+
+template <typename T>
+struct RemoveVolatileT<T volatile>
+{
+	using Type = T;
+};
+
+template<typename T>
+struct RemoveCVT : RemoveConstT<typename RemoveVolatileT<T>::Type>
+{
+
+};
+
+template<typename T>
+using RemoveCV = typename RemoveCVT<T>::Type;
 
 int main(int argc, const char * argv[])
 {
