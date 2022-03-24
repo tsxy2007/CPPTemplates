@@ -557,14 +557,79 @@ struct RemoveCVT : RemoveConstT<typename RemoveVolatileT<T>::Type>
 template<typename T>
 using RemoveCV = typename RemoveCVT<T>::Type;
 
+
+template<typename ...> using VoidT = void;
+template<typename ,typename = VoidT<>>
+struct IsDefaultConstructibleT : std::false_type
+{
+
+};
+
+template<typename T>
+struct IsDefaultConstructibleT<T,VoidT<decltype(T())>> : std::true_type
+{
+
+};
+
+
+template<typename T>
+struct IsDefaultConstructibleHelper
+{
+private:
+	template<typename U,typename = decltype(U())>
+	static std::true_type test(int);
+	template<typename>
+	static std::false_type test(...);
+public:
+	using Type = decltype(test<T>(43));
+};
+
+struct TestStruct
+{
+	TestStruct() = delete;
+};
+
+struct TestStruct1
+{
+	TestStruct1() {};
+};
+
+template<typename F, typename... Args,typename = decltype(std::declval<F>()(std::declval<Args&&>()...))> std::true_type isValidImpl(void*);
+
+template<typename F, typename ... Args> std::false_type isValidImpl(...);
+
+inline constexpr auto isValid = [](auto f) { return [](auto&&... args) { return decltype(isValidImpl<decltype(f), decltype(args) &&...>(nullptr)){}; }; };
+
+template<typename T> struct TypeT{	using Type = T;};
+
+template <typename T> constexpr auto type = TypeT<T>{};
+
+template<typename T> T valueT(TypeT<T>);
+
+constexpr auto isDefaultConstructible = isValid([](auto x)->decltype((void)decltype(valueT(x))()) {});
+
 int main(int argc, const char * argv[])
 {
+	;
 	int num[] = { 1,2,3,4,5 };
 	std::cout<<"the average value of the iterger values is "<<accum(num,num+5)<<"\n";
 
+	static TestStruct1 t = TestStruct1{};
 	char name[] = "templates";
 	int length = sizeof(name) - 1;
 	std::cout << "the average value of characters in " << name << " = " << accum(name, name + length) / length << "\n";
+	
+	std::cout<<" is TestStruct has defacult construct = "<< ::IsDefaultConstructibleHelper<TestStruct>::Type::value<<std::endl;
+	std::cout<<" is int has defacult construct = "<< ::IsDefaultConstructibleHelper<int&>::Type::value <<std::endl;
+	std::cout << " is TestStruct1 has defacult construct = " << ::IsDefaultConstructibleHelper<TestStruct1>::Type::value << std::endl;
+
+	std::cout << " is TestStruct has defacult construct = " << ::isDefaultConstructible(type<TestStruct>)<< std::endl;
+	std::cout << " is int has defacult construct = " << isDefaultConstructible(type<int&>) << std::endl;
+	std::cout << " is TestStruct1 has defacult construct = " << isDefaultConstructible(type<TestStruct1>) << std::endl;
+
+	std::cout << " is TestStruct has defacult construct = " << std::is_default_constructible<TestStruct>::value << std::endl;
+	std::cout << " is int has defacult construct = " << std::is_default_constructible<int&>::value << std::endl;
+	std::cout << " is TestStruct1 has defacult construct = " << std::is_default_constructible<TestStruct1>::value << std::endl;
 
 	system("PAUSE ");
 	return 0;
