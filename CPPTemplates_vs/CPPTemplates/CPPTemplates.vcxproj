@@ -84,7 +84,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -118,8 +118,11 @@
   <ItemGroup>
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\arrays.hpp" />
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\boolstring.hpp" />
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\addspace.h" />
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\dec1.hpp" />
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\Dev3.h" />
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\Fib.h" />
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\MaxDefault1.h" />
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\genericlargesttype.h" />
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\largesttype.h" />
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\lessarray.hpp" />
@@ -129,6 +132,9 @@
     <ClInclude Include="..\..\CPPTemplates\CPPTemplates\typelistisempty.h" />
     <ClInclude Include="nthelement.h" />
     <ClInclude Include="Typelist.h" />
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\stackauto.h" />
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\varprint2.h" />
+    <ClInclude Include="..\..\CPPTemplates\CPPTemplates\varprint_opeator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\CPPTemplates\CPPTemplates\main.cpp" />

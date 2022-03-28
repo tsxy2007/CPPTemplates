@@ -384,8 +384,20 @@ void foo(int a1[7], int a2[], int(&a3)[42], int(&x0)[], T1 x1, T2& x2, T3&& x3)
 	MyClass<decltype(x3)>::print();
 }
 
+template<typename T, typename... Types>
+void print(T const& firstArg, Types const&... args)
+{
+	std::cout << firstArg << '\n';
+	if constexpr (sizeof...(args) > 0)
+	{
+		print(args ...); //code only available if sizeof…(args)>0 (since C++17) 
+	}
+}
+
 int main(int argc, const char * argv[])
 {
+    print(1, 2, 3);
+    std::vector<int> a{1,2};
     //long i = 1000000;
 	//ZZ01::Stack<int> zzs;
 	//zzs.push(1);
@@ -535,29 +547,29 @@ int main(int argc, const char * argv[])
 	//std::string s1 = "ztk",s2="wss";
 	//string s3 = US1::max(s1,s2);
 	//std::cout<<"s3 = "<<s3<<endl;
-    int a[42];
-    //MyClass<decltype(a)>::print();
-    extern int x[];
-    foo(a, a, a, x, x, x, x);
+ //   int a[42];
+ //   //MyClass<decltype(a)>::print();
+ //   extern int x[];
+ //   foo(a, a, a, x, x, x, x);
 
-    std::string str = "on";
-    BoolString s(str);
-    std::cout << s.get() << std::endl;
-    std::cout << s.get<bool>() << std::endl;
+ //   std::string str = "on";
+ //   BoolString s(str);
+ //   std::cout << s.get() << std::endl;
+ //   std::cout << s.get<bool>() << std::endl;
 
-	int xcout[] = { 1, 2, 3 };
-	int ycout[] = { 1, 2, 3, 4, 5 };
-	std::cout << TTTT::less(xcout, ycout) << std::endl;
+	//int xcout[] = { 1, 2, 3 };
+	//int ycout[] = { 1, 2, 3, 4, 5 };
+	//std::cout << TTTT::less(xcout, ycout) << std::endl;
 
-    stack_5111::Stack<int> stack_5_int;
-    stack_5_int.push(1);
-    stack_5_int.push(2);
+ //   stack_5111::Stack<int> stack_5_int;
+ //   stack_5_int.push(1);
+ //   stack_5_int.push(2);
 
-    stack_5111::Stack<std::string> stack_5_string ;
-    stack_5_string.push("1");
+ //   stack_5111::Stack<std::string> stack_5_string ;
+ //   stack_5_string.push("1");
 
-    stack_5111::Stack<int> stack_5_int_temp = stack_5_int;
-    std::cout << stack_5_int_temp.top() << std::endl;
+ //   stack_5111::Stack<int> stack_5_int_temp = stack_5_int;
+ //   std::cout << stack_5_int_temp.top() << std::endl;
 
 	system ( "PAUSE " );
     return 0;
