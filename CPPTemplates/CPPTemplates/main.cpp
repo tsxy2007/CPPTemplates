@@ -7,167 +7,206 @@
 //
 
 #include <iostream>
-#include <vector>
-#include <list>
-//#include <forward_list>
-#include <deque>
-//#include <experimental/vector>
-#include <stack>
-#include <queue>
-#include <set>
-#include <map>
-#include <memory>
-#include <time.h>  
-#include <stdio.h>
-#include <sstream>
-#include <array>
-#include <unordered_map>
-#include <algorithm>
-#include <cstdlib>
-#include <functional>
-#include "Stack4.hpp"
-#include "Stack5.hpp"
-#include "Dev3.h"
-#include "dec1.hpp"
-#include "TestVector.hpp"
-#include "stack1.h"
-#include "arrays.hpp"
-#include "boolstring.hpp"
-#include "lessarray.hpp"
-#include "stack5decl.h"
-
-using namespace std;
-
+#include "MaxDefault1.h"
+#include "Fib.h"
+#include "stackauto.h"
+#include "varprint2.h"
+#include "varprint_opeator.h"
+//#include <vector>
+//#include <list>
+////#include <forward_list>
+//#include <deque>
+////#include <experimental/vector>
+//#include <stack>
+//#include <queue>
+//#include <set>
+//#include <map>
+//#include <memory>
+//#include <time.h>  
+//#include <stdio.h>
+//#include <sstream>
+//#include <array>
+//#include <unordered_map>
+//#include <algorithm>
+//#include <cstdlib>
+//#include <functional>
+//#include "Stack4.hpp"
+//#include "Stack5.hpp"
+//#include "Dev3.h"
+//#include "dec1.hpp"
+//#include "TestVector.hpp"
+//#include "stack1.h"
 
 
-namespace c2_1 // 模版函数
-{
-    template <typename T>
-    const T& max(const T& a , const T& b)
-    {
-        return a > b ? a : b;
-    }
-//    template <typename T1 ,typename T2>
-//    const T1& max(const T1& a , const T2& b)
+//using namespace std;
+//
+//namespace c2_1 // 模版函数
+//{
+//    template <typename T>
+//    const T& max(const T& a , const T& b)
 //    {
-//        return a > b ? a: b;
+//        return a > b ? a : b;
 //    }
-    template <typename T , typename T1 ,typename T2>
-    const T& max (const T1& a , const T2& b)
-    {
-        return a > b ? a : b;
-    }
-}
-string get_a_target_string()
-{
-    char buf[10];
-    snprintf(buf, 10, "%d",rand() % 32000 );
-    return string(buf);
-}
-long get_a_target_long()
-{
-    return rand() / 32000;
-}
-void GetValue ( char* p ) {
-	p = ( char* ) malloc ( 100 );
-}
-//void Test ( ) {
-//	char* str = NULL;
-//	GetValue ( str );
-//	strcpy ( str , "Perfect" );
-//	strcpy ( str + 2 , "World" );
-//	printf ( str );
+////    template <typename T1 ,typename T2>
+////    const T1& max(const T1& a , const T2& b)
+////    {
+////        return a > b ? a: b;
+////    }
+//    template <typename T , typename T1 ,typename T2>
+//    const T& max (const T1& a , const T2& b)
+//    {
+//        return a > b ? a : b;
+//    }
 //}
-#define ARRAY_SIZE 500000
-namespace US1
-{
- template<class T>
- T const & max(T const& a, T const& b)
- {
-	 return a < b ? b : a ;
- }
-}
-int compare_int(const void * ele1, const void * ele2)
-{
-    return *(int*)ele1 - *(int*)ele2;
-}
-namespace JJ02
-{
-    //    void test_function(long& value);
-    int find(const void * a, const void * b)
-    {
-        string as = *(string*)a;
-        string bs = *(string*)b;
-        return as.compare(bs);
-    }
-    void test_function(long& value)
-    {
-        vector<string> c ;
-        char buf[10];
-        clock_t timeStart = clock();
-        for (long i = 0 ; i<value; i++) {
-            try {
-                snprintf(buf, 10, "%d",rand());
-                c.push_back(string(buf));
-            } catch (exception& p) {
-                cout<<"i = "<<i<<p.what()<<endl;
-                abort();
-            }
-        }
-        cout<<"c push_back millis = "<<clock() - timeStart <<endl;
-        cout<<"c size = "<<c.size()<<endl;
-        cout<<"c capacity = "<<c.capacity()<<endl;
-        cout<<"c data = "<<c.data()<<endl;
-        
-        timeStart = clock();
-        snprintf(buf, 10, "%d",rand());
-        string target(buf);
-        auto pItem = std::find(c.begin(), c.end(), target );
-        cout<<"pItem = "<<*pItem<<endl;
-        cout<<"::find millis = "<<clock() - timeStart <<endl;
-        
-        timeStart = clock();
-        sort(c.begin(), c.end());
-        string* pItem1 = (string*)bsearch(&target, c.data(), c.size(), sizeof(string),find );
-        cout<<"bsearch millis = "<<clock() - timeStart <<endl;
-    }
-}
-namespace JJ03
-{
-    void test_function(long &value)
-    {
-        list<string> c ;
-        char buf[10];
-        clock_t timeStart = clock();
-        for (long i = 0 ; i<value; i++) {
-            try {
-                snprintf(buf, 10, "%d",rand());
-                c.push_back(string(buf));
-            } catch (exception& p) {
-                cout<<"i = "<<i<<p.what()<<endl;
-                abort();
-            }
-        }
-        cout<<"c push_back millis = "<<clock() - timeStart <<endl;
-        cout<<"c size = "<<c.size()<<endl;
-        cout<<"c max size = "<<c.max_size()<<endl;
-        
-        timeStart = clock();
-        snprintf(buf, 10, "%d",rand());
-        string target(buf);
-        ::find(c.begin(), c.end(), target);
-        cout<<"c push_back millis = "<<clock() - timeStart <<endl;
-        
-        timeStart = clock();
-        c.sort();
-        cout<<"c c.sort millis = "<< (clock() - timeStart) <<endl;
-    }
-}
-namespace JJ04
-{
-    void test_function(long&vale)
-    {
-//        forward_list<string> c;
+//string get_a_target_string()
+//{
+//    char buf[10];
+//    snprintf(buf, 10, "%d",rand() % 32000 );
+//    return string(buf);
+//}
+//long get_a_target_long()
+//{
+//    return rand() / 32000;
+//}
+//void GetValue ( char* p ) {
+//	p = ( char* ) malloc ( 100 );
+//}
+////void Test ( ) {
+////	char* str = NULL;
+////	GetValue ( str );
+////	strcpy ( str , "Perfect" );
+////	strcpy ( str + 2 , "World" );
+////	printf ( str );
+////}
+//#define ARRAY_SIZE 500000
+//
+//namespace US1
+//{
+// template<class T>
+// T const & max(T const& a, T const& b)
+// {
+//	 return a < b ? b : a ;
+// }
+//}
+//
+//int compare_int(const void * ele1, const void * ele2)
+//{
+//    return *(int*)ele1 - *(int*)ele2;
+//}
+//namespace JJ02
+//{
+//    //    void test_function(long& value);
+//    int find(const void * a, const void * b)
+//    {
+//        string as = *(string*)a;
+//        string bs = *(string*)b;
+//        return as.compare(bs);
+//    }
+//    void test_function(long& value)
+//    {
+//        vector<string> c ;
+//        char buf[10];
+//        clock_t timeStart = clock();
+//        for (long i = 0 ; i<value; i++) {
+//            try {
+//                snprintf(buf, 10, "%d",rand());
+//                c.push_back(string(buf));
+//            } catch (exception& p) {
+//                cout<<"i = "<<i<<p.what()<<endl;
+//                abort();
+//            }
+//        }
+//        cout<<"c push_back millis = "<<clock() - timeStart <<endl;
+//        cout<<"c size = "<<c.size()<<endl;
+//        cout<<"c capacity = "<<c.capacity()<<endl;
+//        cout<<"c data = "<<c.data()<<endl;
+//        
+//        timeStart = clock();
+//        snprintf(buf, 10, "%d",rand());
+//        string target(buf);
+//        auto pItem = std::find(c.begin(), c.end(), target );
+//        cout<<"pItem = "<<*pItem<<endl;
+//        cout<<"::find millis = "<<clock() - timeStart <<endl;
+//        
+//        timeStart = clock();
+//        sort(c.begin(), c.end());
+//        string* pItem1 = (string*)bsearch(&target, c.data(), c.size(), sizeof(string),find );
+//        cout<<"bsearch millis = "<<clock() - timeStart <<endl;
+//    }
+//}
+//
+//namespace JJ03
+//{
+//    void test_function(long &value)
+//    {
+//        list<string> c ;
+//        char buf[10];
+//        clock_t timeStart = clock();
+//        for (long i = 0 ; i<value; i++) {
+//            try {
+//                snprintf(buf, 10, "%d",rand());
+//                c.push_back(string(buf));
+//            } catch (exception& p) {
+//                cout<<"i = "<<i<<p.what()<<endl;
+//                abort();
+//            }
+//        }
+//        cout<<"c push_back millis = "<<clock() - timeStart <<endl;
+//        cout<<"c size = "<<c.size()<<endl;
+//        cout<<"c max size = "<<c.max_size()<<endl;
+//        
+//        timeStart = clock();
+//        snprintf(buf, 10, "%d",rand());
+//        string target(buf);
+//        ::find(c.begin(), c.end(), target);
+//        cout<<"c push_back millis = "<<clock() - timeStart <<endl;
+//        
+//        timeStart = clock();
+//        c.sort();
+//        cout<<"c c.sort millis = "<< (clock() - timeStart) <<endl;
+//    }
+//}
+//namespace JJ04
+//{
+//    void test_function(long&vale)
+//    {
+////        forward_list<string> c;
+////        char buf[10];
+////        clock_t timeStart = clock();
+////        for (long i = 0 ; i<vale ; i++)
+////        {
+////            try
+////            {
+////                snprintf(buf, 10, "%d",rand());
+////                c.push_front(string(buf));
+////            }
+////            catch (exception& p)
+////            {
+////                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
+////            }
+////        }
+////        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
+////        cout<<"c front "<<c.front()<<endl;
+////        cout<<"c max size = "<<c.max_size()<<endl;
+////
+////        timeStart = clock();
+////        c.sort();
+////        cout<<" c.sort millis = "<<(clock() - timeStart) <<endl;
+////
+////
+////        snprintf(buf, 10, "%d",rand());
+////        string target(buf);
+////        timeStart = clock();
+////        ::find(c.begin(), c.end(), target);
+////        cout<<" ::find millis = "<<(clock() - timeStart) <<endl;
+//    }
+//}
+//
+//namespace JJ06
+//{
+//    void test_function(long&vale)
+//    {
+//        deque<string> c;
 //        char buf[10];
 //        clock_t timeStart = clock();
 //        for (long i = 0 ; i<vale ; i++)
@@ -183,226 +222,534 @@ namespace JJ04
 //            }
 //        }
 //        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
-//        cout<<"c front "<<c.front()<<endl;
-//        cout<<"c max size = "<<c.max_size()<<endl;
+//        cout<<"c front = "<<c.front()<<endl;
+//        cout<<"c back = "<<c.back()<<endl;
+//        cout<<"c max_size = "<<c.max_size()<<endl;
+//        cout<<"c size = "<<c.size()<<endl;
+//        c.pop_back();
+//        cout<<"c front = "<<c.front()<<endl;
+//        cout<<"c back = "<<c.back()<<endl;
+//        cout<<"c max_size = "<<c.max_size()<<endl;
+//        cout<<"c size = "<<c.size()<<endl;
+//    }
+//}
 //
-//        timeStart = clock();
-//        c.sort();
-//        cout<<" c.sort millis = "<<(clock() - timeStart) <<endl;
 //
+//namespace JJ07
+//{
+//    void test_function(long&vale)
+//    {
+//        stack<string> c;
+//        char buf[10];
+//        clock_t timeStart = clock();
+//        for (long i = 0 ; i<vale ; i++)
+//        {
+//            try
+//            {
+//                snprintf(buf, 10, "%d",rand());
+//                c.push(string(buf));
+//            }
+//            catch (exception& p)
+//            {
+//                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
+//            }
+//        }
+//        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
+//        cout<<"c top = "<<c.top()<<endl;
+//        cout<<"c size = "<<c.size()<<endl;
+//    }
+//}
 //
-//        snprintf(buf, 10, "%d",rand());
-//        string target(buf);
-//        timeStart = clock();
-//        ::find(c.begin(), c.end(), target);
-//        cout<<" ::find millis = "<<(clock() - timeStart) <<endl;
-    }
-}
-namespace JJ06
+//namespace JJ08
+//{
+//    void test_function(long&vale)
+//    {
+//        queue<string> c;
+//        char buf[10];
+//        clock_t timeStart = clock();
+//        for (long i = 0 ; i<vale ; i++)
+//        {
+//            try
+//            {
+//                snprintf(buf, 10, "%d",rand());
+//                c.push(string(buf));
+//            }
+//            catch (exception& p)
+//            {
+//                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
+//            }
+//        }
+//        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
+//        cout<<"c back = "<<c.back()<<endl;
+//        cout<<"c size = "<<c.size()<<endl;
+//        cout<<"c front = " <<c.front()<<endl;
+//    }
+//}
+//
+//namespace JJ09
+//{
+//    void test_function(long &vale)
+//    {
+//        multiset<string> c;
+//        char buf[10];
+//        
+//        clock_t startTime = clock();
+//        
+//        for (long i = 0 ; i<vale; i++) {
+//            try {
+//                string item = get_a_target_string();
+//                c.insert(item);
+//            } catch (exception& p) {
+//                cout<<"["<<i<<"]"<<p.what()<<endl;
+//                abort();
+//            }
+//        }
+//        cout<<"set insert millis = "<<( clock() - startTime )<<endl;
+//        cout<<"set size = "<< c.size()<<endl;
+//        cout<<"set max size = "<<c.max_size()<<endl;
+//        
+//        string target =get_a_target_string();
+//        {
+//            startTime = clock();
+//            auto pItem = find(c.begin(), c.end(), target);
+//            cout<<"std::find , milli-seconds "<<(clock() - startTime)<<endl;
+//            if (pItem != c.end())
+//                cout<<*pItem<<endl;
+//            else
+//                cout<<"not found!"<<endl;
+//        }
+//        
+//        {
+//            startTime = clock();
+//            auto pItem = c.find(target);
+//            cout<<"std::find , milli-seconds "<<(clock() - startTime)<<endl;
+//            if (pItem != c.end())
+//                cout<<*pItem<<endl;
+//            else
+//                cout<<"not found!"<<endl;
+//        }
+//    }
+//}
+//
+//namespace JJ10
+//{
+//    void test_function(long &value)
+//    {
+//        cout<<"begin multimap ...................... "<<endl;
+//        multimap<long, string> c;
+//        clock_t startTime = clock();
+//        for (long i = 0; i<value; i++) {
+//            try {
+//                string item = get_a_target_string();
+//                c.insert(pair<long,string>(i,item));
+//            } catch (exception& p) {
+//                 cout<<"["<<i<<"]"<<p.what()<<endl;
+//                abort();
+//            }
+//        }
+//        
+//        cout<<"multimap insert millis = "<<(clock() - startTime)<<endl;
+//        cout<< "multimap.max_size ="<<c.max_size()<<endl;
+//        cout<<"multimap.size = "<<c.size()<<endl;
+//        
+//         long target = get_a_target_long();
+//        {
+//           
+//            startTime = clock();
+//            auto pItem = c.find(target);
+//            cout<<"c.find item millis seconds = "<<(clock() - startTime)<<endl;
+//            if (pItem != c.end())
+//                cout<<"pItem = "<<(*pItem).second<<endl;
+//            else
+//                cout<<"pItem not found"<<endl;
+//        }
+//        
+//    }
+//}
+//
+//namespace JJ11
+//{
+//	void test_function (long&vale)
+//	{
+//		cout << "allocator test beging ................................." << endl;
+//		allocator<int> al;
+//		int* a = al.allocate (1);
+//		al.construct (a, 7);
+//		cout << "a[0] = " << a[0] << endl;
+//		al.deallocate (a, 1);
+//
+//	}
+//}
+// 类型萃取
+template<typename T>
+struct AccumulationTraits;
+
+template<>
+struct AccumulationTraits<char>
 {
-    void test_function(long&vale)
-    {
-        deque<string> c;
-        char buf[10];
-        clock_t timeStart = clock();
-        for (long i = 0 ; i<vale ; i++)
-        {
-            try
-            {
-                snprintf(buf, 10, "%d",rand());
-                c.push_front(string(buf));
-            }
-            catch (exception& p)
-            {
-                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
-            }
-        }
-        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
-        cout<<"c front = "<<c.front()<<endl;
-        cout<<"c back = "<<c.back()<<endl;
-        cout<<"c max_size = "<<c.max_size()<<endl;
-        cout<<"c size = "<<c.size()<<endl;
-        c.pop_back();
-        cout<<"c front = "<<c.front()<<endl;
-        cout<<"c back = "<<c.back()<<endl;
-        cout<<"c max_size = "<<c.max_size()<<endl;
-        cout<<"c size = "<<c.size()<<endl;
-    }
-}
-namespace JJ07
-{
-    void test_function(long&vale)
-    {
-        stack<string> c;
-        char buf[10];
-        clock_t timeStart = clock();
-        for (long i = 0 ; i<vale ; i++)
-        {
-            try
-            {
-                snprintf(buf, 10, "%d",rand());
-                c.push(string(buf));
-            }
-            catch (exception& p)
-            {
-                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
-            }
-        }
-        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
-        cout<<"c top = "<<c.top()<<endl;
-        cout<<"c size = "<<c.size()<<endl;
-    }
-}
-namespace JJ08
-{
-    void test_function(long&vale)
-    {
-        queue<string> c;
-        char buf[10];
-        clock_t timeStart = clock();
-        for (long i = 0 ; i<vale ; i++)
-        {
-            try
-            {
-                snprintf(buf, 10, "%d",rand());
-                c.push(string(buf));
-            }
-            catch (exception& p)
-            {
-                cout<<"i = "<<i<<p.what()<<" bad_block "<<endl;
-            }
-        }
-        cout<<"c push_front millison =  "<< clock() - timeStart <<endl;
-        cout<<"c back = "<<c.back()<<endl;
-        cout<<"c size = "<<c.size()<<endl;
-        cout<<"c front = " <<c.front()<<endl;
-    }
-}
-namespace JJ09
-{
-    void test_function(long &vale)
-    {
-        multiset<string> c;
-        char buf[10];
-        
-        clock_t startTime = clock();
-        
-        for (long i = 0 ; i<vale; i++) {
-            try {
-                string item = get_a_target_string();
-                c.insert(item);
-            } catch (exception& p) {
-                cout<<"["<<i<<"]"<<p.what()<<endl;
-                abort();
-            }
-        }
-        cout<<"set insert millis = "<<( clock() - startTime )<<endl;
-        cout<<"set size = "<< c.size()<<endl;
-        cout<<"set max size = "<<c.max_size()<<endl;
-        
-        string target =get_a_target_string();
-        {
-            startTime = clock();
-            auto pItem = find(c.begin(), c.end(), target);
-            cout<<"std::find , milli-seconds "<<(clock() - startTime)<<endl;
-            if (pItem != c.end())
-                cout<<*pItem<<endl;
-            else
-                cout<<"not found!"<<endl;
-        }
-        
-        {
-            startTime = clock();
-            auto pItem = c.find(target);
-            cout<<"std::find , milli-seconds "<<(clock() - startTime)<<endl;
-            if (pItem != c.end())
-                cout<<*pItem<<endl;
-            else
-                cout<<"not found!"<<endl;
-        }
-    }
-}
-namespace JJ10
-{
-    void test_function(long &value)
-    {
-        cout<<"begin multimap ...................... "<<endl;
-        multimap<long, string> c;
-        clock_t startTime = clock();
-        for (long i = 0; i<value; i++) {
-            try {
-                string item = get_a_target_string();
-                c.insert(pair<long,string>(i,item));
-            } catch (exception& p) {
-                 cout<<"["<<i<<"]"<<p.what()<<endl;
-                abort();
-            }
-        }
-        
-        cout<<"multimap insert millis = "<<(clock() - startTime)<<endl;
-        cout<< "multimap.max_size ="<<c.max_size()<<endl;
-        cout<<"multimap.size = "<<c.size()<<endl;
-        
-         long target = get_a_target_long();
-        {
-           
-            startTime = clock();
-            auto pItem = c.find(target);
-            cout<<"c.find item millis seconds = "<<(clock() - startTime)<<endl;
-            if (pItem != c.end())
-                cout<<"pItem = "<<(*pItem).second<<endl;
-            else
-                cout<<"pItem not found"<<endl;
-        }
-        
-    }
-}
-namespace JJ11
-{
-	void test_function (long&vale)
+	using AccT = int;
+	//static AccT const zero = 0;
+	static constexpr AccT zero()
 	{
-		//cout << "allocator test beging ................................." << endl;
-		//allocator<int> al;
-		//int* a = al.allocate (1);
-		//al.construct (a, 7);
-		//cout << "a[0] = " << a[0] << endl;
-		//al.deallocate (a, 1);
-
+		return 0;
 	}
-}
+};
 
-template<typename T1, typename T2, typename T3>
-void foo(int a1[7], int a2[], int(&a3)[42], int(&x0)[], T1 x1, T2& x2, T3&& x3)
+template<>
+struct AccumulationTraits<short>
 {
-	MyClass<decltype(a1)>::print();
-	MyClass<decltype(a2)>::print();
-	MyClass<decltype(a3)>::print();
-
-	MyClass<decltype(x0)>::print();
-	MyClass<decltype(x1)>::print();
-	MyClass<decltype(x2)>::print();
-	MyClass<decltype(x3)>::print();
-}
-
-template<typename T, typename... Types>
-void print(T const& firstArg, Types const&... args)
-{
-	std::cout << firstArg << '\n';
-	if constexpr (sizeof...(args) > 0)
+	using AccT = int;
+	//static AccT const zero = 0;
+	static constexpr AccT zero()
 	{
-		print(args ...); //code only available if sizeof…(args)>0 (since C++17) 
+		return 0;
 	}
+};
+
+template<>
+struct AccumulationTraits<int>
+{
+	using AccT = long;
+	//static AccT const zero = 0;
+	static constexpr AccT zero()
+	{
+		return 0;
+	}
+};
+
+template<>
+struct AccumulationTraits<unsigned int>
+{
+	using AccT = unsigned long;
+	//static AccT const zero = 0;
+	static constexpr AccT zero()
+	{
+		return 0;
+	}
+};
+
+template<>
+struct AccumulationTraits<float>
+{
+	using AccT = float;
+	//static constexpr AccT const zero = 0.f;
+	static constexpr AccT zero()
+	{
+		return 0.f;
+	}
+};
+
+template<typename T>
+auto accum(T const* beg, T const* end)
+{
+	using AccT = typename AccumulationTraits<T>::AccT;
+	AccT total = AccumulationTraits<T>::zero();
+	while (beg!= end)
+	{
+		total += *beg;
+		++beg;
+	}
+	return total;
 }
+
+template<typename T>
+struct RemoveReferenceT
+{
+	using Type = T;
+};
+
+template<typename T>
+struct RemoveReferenceT<T&>
+{
+	using Type = T;
+};
+
+template <typename T>
+struct RemoveReferenceT<T&&>
+{
+	using Type = T;
+};
+
+template<typename T>
+using RemoveReference = typename RemoveReferenceT<T>::Type;
+
+template<typename T>
+struct AddLValueReferenceT
+{
+	using Type = T&;
+};
+
+template<typename T>
+using AddLValueReference = typename AddLValueReferenceT<T>::Type;
+
+template<typename T>
+struct AddRValueReferenceT
+{
+	using Type = T&&;
+};
+
+template<typename T>
+using AddRValueReference = typename AddRValueReferenceT<T>::Type;
+
+template<typename T>
+using AddLeftValueReferenceT = T&;
+
+template<typename T>
+using AddRightValueReferenceT = T&&;
+
+template<>
+struct AddLValueReferenceT<void>
+{
+	using Type = void;
+};
+
+template<>
+struct AddLValueReferenceT<void const>
+{
+	using Type = void;
+};
+
+template<>
+struct AddLValueReferenceT<void volatile>
+{
+	using Type = void;
+};
+
+template<>
+struct AddLValueReferenceT<void const volatile>
+{
+	using Type = void;
+};
+
+template<typename T>
+struct RemoveConstT
+{
+	using Type = T;
+};
+
+template<typename T>
+struct RemoveConstT<T const>
+{
+	using Type = T;
+};
+
+template<typename T>
+using RemoveConst = typename RemoveConstT<T>::Type;
+
+template <typename T>
+struct RemoveVolatileT
+{
+	using Type = T;
+};
+
+template <typename T>
+struct RemoveVolatileT<T volatile>
+{
+	using Type = T;
+};
+
+template<typename T>
+struct RemoveCVT : RemoveConstT<typename RemoveVolatileT<T>::Type>
+{
+
+};
+
+template<typename T>
+using RemoveCV = typename RemoveCVT<T>::Type;
+
+
+template<typename ...> using VoidT = void;
+template<typename ,typename = VoidT<>>
+struct IsDefaultConstructibleT : std::false_type
+{
+
+};
+
+template<typename T>
+struct IsDefaultConstructibleT<T,VoidT<decltype(T())>> : std::true_type
+{
+
+};
+
+template<typename T1,typename T2>
+struct IsSameT
+{
+	static constexpr bool value = false;
+};
+
+template<typename T>
+struct IsSameT<T, T>
+{
+	static constexpr bool value = true;
+};
+
+template<typename T>
+struct IsDefaultConstructibleT2 
+{
+private:
+	template<typename U, typename = decltype(U())>
+	static char test(void*);
+
+	template<typename>
+	static long test(...);
+public:
+	static constexpr bool value = IsSameT<decltype(test<T>(nullptr)), char>::value;
+};
+
+template<typename T>
+struct IsDefaultConstructibleHelper
+{
+private:
+	template<typename U,typename = decltype(U())>
+	static std::true_type test(int);
+	template<typename>
+	static std::false_type test(...);
+public:
+	using Type = decltype(test<T>(43));
+};
+
+
+struct TestStruct
+{
+	TestStruct() = delete;
+};
+
+struct TestStruct1
+{
+	TestStruct1() {};
+};
+
+template<typename F, typename... Args,
+	typename = decltype(std::declval<F>()(std::declval<Args&&>()...))> 
+	std::true_type isValidImpl(void*);
+
+template<typename F, typename ... Args> std::false_type isValidImpl(...);
+
+inline constexpr auto isValid = [](auto f) 
+{ 
+	return [](auto&&... args) 
+	{ 
+		return decltype(isValidImpl<decltype(f), decltype(args) &&...>(nullptr)){}; 
+	}; 
+};
+
+template<typename T> struct TypeT{	using Type = T;};
+
+template <typename T> constexpr auto type = TypeT<T>{};
+
+template<typename T> T valueT(TypeT<T>);
+
+constexpr auto isDefaultConstructible = isValid(
+	[](auto x)->decltype((void)decltype(valueT(x))()) 
+	{
+});
+
+template<typename, typename, typename=std::void_t<>>
+struct HasPlusT : std::false_type
+{
+};
+
+template<typename T1, typename T2>
+struct HasPlusT <T1,T2, std::void_t<decltype(std::declval<T1>() + std::declval<T2>())>>: std::true_type
+{
+};
+
+template<typename T1,typename T2, bool = HasPlusT<T1, T2>::value>
+struct PlusResultT
+{
+	using Type = decltype(std::declval<T1>() + std::declval<T2>());
+};
+
+template<typename T1, typename T2>
+struct PlusResultT<T1,T2,false>
+{
+};
+
+template<typename T1,typename T2, bool = HasPlusT<T1, T2>::value>
+using PlusResult = typename PlusResultT<T1, T2>::Type;
+
+
+template<typename T1,typename T2>
+std::array<typename PlusResult<T1, T2> ,10> SumArray(std::array<T1,10>const& a, std::array<T2,10> const& b)
+{
+	std::array<PlusResult<T1, T2>, 10> c;
+
+	for (size_t i = 0; i < 10; i++)
+	{
+		PlusResult<T1, T2> t = a[i] + b[i];
+		c[i] = t;
+	}
+	return c;
+};
 
 int main(int argc, const char * argv[])
 {
-    print(1, 2, 3);
-    std::vector<int> a{1,2};
-    //long i = 1000000;
+	;
+	int num[] = { 1,2,3,4,5 };
+	std::cout<<"the average value of the iterger values is "<<accum(num,num+5)<<"\n";
+
+	static TestStruct1 t = TestStruct1{};
+	char name[] = "templates";
+	int length = sizeof(name) - 1;
+	std::cout << "the average value of characters in " << name << " = " << accum(name, name + length) / length << "\n";
+	std::cout << "--------------------------------------------------------------------" << std::endl;
+
+	std::cout<<" is TestStruct has defacult construct = "<< ::IsDefaultConstructibleHelper<TestStruct>::Type::value<<std::endl;
+	std::cout<<" is int has defacult construct = "<< ::IsDefaultConstructibleHelper<int&>::Type::value <<std::endl;
+	std::cout << " is TestStruct1 has defacult construct = " << ::IsDefaultConstructibleHelper<TestStruct1>::Type::value << std::endl;
+	std::cout << "--------------------------------------------------------------------" << std::endl;
+
+	std::cout << " is TestStruct has defacult construct = " << ::isDefaultConstructible(type<TestStruct>)<< std::endl;
+	std::cout << " is int has defacult construct = " << isDefaultConstructible(type<int&>) << std::endl;
+	std::cout << " is TestStruct1 has defacult construct = " << isDefaultConstructible(type<TestStruct1>) << std::endl;
+	std::cout << "--------------------------------------------------------------------" << std::endl;
+
+	std::cout << " is TestStruct has defacult construct = " << std::is_default_constructible<TestStruct>::value << std::endl;
+	std::cout << " is int has defacult construct = " << std::is_default_constructible<int&>::value << std::endl;
+	std::cout << " is TestStruct1 has defacult construct = " << std::is_default_constructible<TestStruct1>::value << std::endl;
+	
+	std::cout << "--------------------------------------------------------------------" << std::endl;
+	std::cout << " is TestStruct has defacult construct = " << ::IsDefaultConstructibleT2<TestStruct>::value << std::endl;
+	std::cout << " is int has defacult construct = " << ::IsDefaultConstructibleT2<int&>::value << std::endl;
+	std::cout << " is TestStruct1 has defacult construct = " << ::IsDefaultConstructibleT2<TestStruct1>::value << std::endl;
+
+	std::cout << "--------------------------------------------------------------------" << std::endl;
+	std::cout << " is TestStruct has defacult construct = " << ::IsDefaultConstructibleT<TestStruct>::value << std::endl;
+	std::cout << " is int has defacult construct = " << ::IsDefaultConstructibleT<int&>::value << std::endl;
+	std::cout << " is TestStruct1 has defacult construct = " << ::IsDefaultConstructibleT<TestStruct1>::value << std::endl;
+
+	std::array<int, 10> aArray = { 1,2,3,4,5,6,7,8,9,10 };
+	std::array<float, 10> bArray = { 1.1f,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0 };
+
+	auto cArray = SumArray(aArray, bArray);
+	for (size_t i = 0; i < 10; i++)
+	{
+		std::cout << cArray[i] << " ";
+	}
+	std::cout << std::endl;
+	system("PAUSE ");
+	return 0;
+	PP_2::print(1.0, 2.0f, 3, "ehlol");
+	PP_OPERATOR::print(1.0, 2.f, 3, "hello");
+	std::cout << std::endl;
+	PP_OPERATOR::printDouble(1.0, 2.f, 3, "hello");
+	auto a = P6::max1(3, 2.0f);
+	auto b = P6::max(1, 3);
+	auto c = Fib<10>::Value;
+	AUTO::Stack<int, 10> autoStack;
+	autoStack.push(1);
+	autoStack.push(2);
+	auto d = autoStack.top();
+	//std::cout << "Max = " << a << std::endl;
+	system("PAUSE "); 
+    return 0;
+ //   long i = 1000000;
+
 	//ZZ01::Stack<int> zzs;
 	//zzs.push(1);
 	//zzs.pop();
 	//zzs.empty();
+
     //JJ02::test_function(i);
 //    JJ03::test_function(i);
 //    JJ04::test_function(i);
@@ -411,7 +758,9 @@ int main(int argc, const char * argv[])
 //    JJ08::test_function(i);
 //    JJ09::test_function(i);
 //    JJ10::test_function(i);
-//    JJ11::test_function (i);    
+//    JJ11::test_function (i);
+
+    
 //    typedef vector<int,allocator<int>>  VectorInt;
 //
 //    int ia[6] = {27,210,12,47,109,83};
@@ -448,7 +797,8 @@ int main(int argc, const char * argv[])
 //    });
 //    cout<<"sort milli-seconds : "<<(clock() - timeStart)<<endl;
 //    timeStart = clock();
-//    search(array_int.begin(), array_int.end()); 
+//    search(array_int.begin(), array_int.end());
+    
 	//Test ( );
 //    // 第一章
 //    cout << "max is : "<< c2_1::max(1, 2)<<endl;
@@ -541,38 +891,14 @@ int main(int argc, const char * argv[])
 //        floatStack.pop ();
 //    }
 //
+			
 	//int a = 42 , b = 24;
 	//int IMax = US1::max(a,b);
 	//std::cout<<"IMax = "<<IMax<<endl; 
+
 	//std::string s1 = "ztk",s2="wss";
 	//string s3 = US1::max(s1,s2);
 	//std::cout<<"s3 = "<<s3<<endl;
- //   int a[42];
- //   //MyClass<decltype(a)>::print();
- //   extern int x[];
- //   foo(a, a, a, x, x, x, x);
-
- //   std::string str = "on";
- //   BoolString s(str);
- //   std::cout << s.get() << std::endl;
- //   std::cout << s.get<bool>() << std::endl;
-
-	//int xcout[] = { 1, 2, 3 };
-	//int ycout[] = { 1, 2, 3, 4, 5 };
-	//std::cout << TTTT::less(xcout, ycout) << std::endl;
-
- //   stack_5111::Stack<int> stack_5_int;
- //   stack_5_int.push(1);
- //   stack_5_int.push(2);
-
- //   stack_5111::Stack<std::string> stack_5_string ;
- //   stack_5_string.push("1");
-
- //   stack_5111::Stack<int> stack_5_int_temp = stack_5_int;
- //   std::cout << stack_5_int_temp.top() << std::endl;
-
-	system ( "PAUSE " );
+	//system ( "PAUSE " );
     return 0;
 }
-
-int x[] = { 0,8,15 };
