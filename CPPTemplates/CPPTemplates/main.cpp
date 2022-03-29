@@ -12,6 +12,8 @@
 #include "stackauto.h"
 #include "varprint2.h"
 #include "varprint_opeator.h"
+#include <vector>
+
 //#include <vector>
 //#include <list>
 ////#include <forward_list>
@@ -616,7 +618,17 @@ struct TestStruct
 
 struct TestStruct1
 {
-	TestStruct1() {};
+
+	TestStruct1():i(0) {};
+
+	using size_type = std::size_t;
+	TestStruct1& operator+(int b)
+	{
+		i += b;
+		return *this;
+	}
+
+	int i = 0;
 };
 
 template<typename F, typename... Args,
@@ -668,18 +680,64 @@ struct PlusResultT<T1,T2,false>
 template<typename T1,typename T2, bool = HasPlusT<T1, T2>::value>
 using PlusResult = typename PlusResultT<T1, T2>::Type;
 
+template<typename FROM,typename TO>
+struct IsConvertibleHelper
+{
+private:
+	static void aux(TO);
+
+	template<typename F, typename = decltype(aux(std::declval<F>()))>
+	static std::true_type test1(void*);
+
+	template<typename >
+	static std::false_type test1(...);
+public:
+	using type = decltype(test1<FROM>(nullptr));
+};
+
+template<typename FROM, typename TO> struct IsConvertibleT : IsConvertibleHelper<FROM, TO>::type { };
+
+template<typename FROM,typename TO>
+using IsConvertible = typename IsConvertibleT<FROM, TO>::Type;
+
+template<typename FROM,typename TO>
+constexpr bool isConvertible = IsConvertibleT<FROM, TO>::value;
 
 template<typename T1,typename T2>
-std::array<typename PlusResult<T1, T2> ,10> SumArray(std::array<T1,10>const& a, std::array<T2,10> const& b)
+constexpr std::vector<typename PlusResult<T1, T2>> SumArray(std::vector<T1>const& a, std::vector<T2> const& b)
 {
-	std::array<PlusResult<T1, T2>, 10> c;
+	std::vector<PlusResult<T1, T2>> c;
 
 	for (size_t i = 0; i < 10; i++)
 	{
 		PlusResult<T1, T2> t = a[i] + b[i];
-		c[i] = t;
+		c.push_back(t);
 	}
 	return c;
+};
+
+template<typename ...> using VoidT = void;
+template<typename ,typename = VoidT<>>
+struct HasSizeTypeT : std::false_type
+{
+
+};
+
+template<typename T>
+struct HasSizeTypeT<T,VoidT<typename T::size_type>> : std::true_type
+{
+
+};
+
+#define DEFINE_HAS_TYPE(MemType) \ 
+template<typename, typename = std::void_t<>> \
+struct HasTypeT_##MemType \
+	: std::false_type \
+{};\
+template<typename T>
+struct HasTypeT_##MemType<T,std::void_t<typename T::MemType>> \
+	: std::true_type \
+{ \
 };
 
 int main(int argc, const char * argv[])
@@ -718,9 +776,24 @@ int main(int argc, const char * argv[])
 	std::cout << " is int has defacult construct = " << ::IsDefaultConstructibleT<int&>::value << std::endl;
 	std::cout << " is TestStruct1 has defacult construct = " << ::IsDefaultConstructibleT<TestStruct1>::value << std::endl;
 
-	std::array<int, 10> aArray = { 1,2,3,4,5,6,7,8,9,10 };
-	std::array<float, 10> bArray = { 1.1f,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0 };
+	std::cout << "--------------------------------------------------------------------" << std::endl;
+	std::cout << " is TestStruct has defacult construct = " << ::isConvertible<TestStruct,int> << std::endl;
+	std::cout << " is int has defacult construct = " << ::isConvertible<int&, int> << std::endl;
+	std::cout << " is TestStruct1 has defacult construct = " << ::isConvertible<TestStruct1, int> << std::endl;
 
+	std::cout << ::HasSizeTypeT<int>::value << std::endl;
+	std::cout << ::HasSizeTypeT<TestStruct1>::value << std::endl;
+
+	std::vector<int> aArray = { 1,2,3,4,5,6,7,8,9,10 };
+	std::vector<float> bArray = { 1.1f,2.0,3.0,4.0,5.5,6.0,7.0,8.0,9.0,10.0 };
+	TestStruct1* TS1 = new TestStruct1;
+	std::vector<TestStruct1*> dArray = { TS1,TS1,TS1,TS1,TS1,TS1,TS1,TS1,TS1,TS1 };
+
+	TestStruct1 aaaa;;
+	int mmmm = 1;
+	TestStruct1 sdsdfsdf = aaaa + mmmm;
+ 	::PlusResult<TestStruct1, int> aa = aaaa + mmmm;
+	std::cout << typeid(aa).name()  << std::endl;
 	auto cArray = SumArray(aArray, bArray);
 	for (size_t i = 0; i < 10; i++)
 	{
